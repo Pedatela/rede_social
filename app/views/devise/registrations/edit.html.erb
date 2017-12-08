@@ -7,6 +7,20 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= devise_error_messages! %>
 
+          <div class="field">
+           <div class="row">
+             <div class="col m3 s4">
+               <%= f.label 'Photo' %><br />
+               <%= f.file_field :avatar %><br />
+             </div>
+           </div>
+           <div class="row">
+             <div class="col m3 s4">
+               <img id="image_upload_preview" class="responsive-img circle" />
+             </div>
+           </div>
+         </div>
+
         <div class="field">
           <%= f.label :name %><br />
           <%= f.text_field :name, autofocus: true %>
