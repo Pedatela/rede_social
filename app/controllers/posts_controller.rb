@@ -3,9 +3,10 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
+    @user = current_user
     @post = Post.new
-    posts = current_user.posts.map {|post| post}
-    current_user.all_following.each { |user| user.posts.each{|post| posts << post } }
+    posts = @user .posts.map {|post| post}
+    @user.all_following.each { |user| user.posts.each{|post| posts << post } }
     @posts = posts.sort_by &:created_at
   end
 
