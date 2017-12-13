@@ -8,10 +8,10 @@ class LikesController < ApplicationController
     respond_to do |format|
       if @like.save
         format.json { render json: @like }
-        format.html { redirect_to :back, notice: 'Post liked with success.' }
+        format.html { redirect_back fallback_location: posts_path, notice: 'Post liked with success.' }
       else
         format.json { render json: @like.errors, status: :unprocessable_entity }
-        format.html { redirect_to :back }
+        format.html {  redirect_back fallback_location: posts_path }
       end
     end
   end
@@ -21,7 +21,7 @@ class LikesController < ApplicationController
 
     respond_to do |format|
       format.json { head :no_content }
-      format.html { redirect_to :back, notice: 'Post unliked with success.' }
+      format.html {  redirect_back fallback_location: posts_path, notice: 'Post unliked with success.' }
     end
   end
 

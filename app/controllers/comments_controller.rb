@@ -9,10 +9,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.json { render json: @comment, status: :created }
-        format.html { redirect_to :back, notice: 'Comment created with success.' }
+        format.html { redirect_back fallback_location: post_path(@post), notice: 'Comment created with success.' }
       else
         format.json { render json: @comment.errors, status: :unprocessable_entity }
-        format.html { redirect_to :back }
+        format.html { redirect_back fallback_location: post_path(@post)}
       end
     end
   end
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       format.json { render json: :no_content }
-      format.html { redirect_to :back, notice: 'Comment deleted with success.' }
+      format.html { redirect_back fallback_location: post_path(@post), notice: 'Comment deleted with success.' }
     end
   end
 
